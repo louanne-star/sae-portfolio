@@ -8,7 +8,12 @@
       "Bash(curl -s http://localhost:8000/api/projets/forcats-nou)",
       "Bash(python3 -m json.tool)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4300/images/empreintes.jpg)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(zip -r /Users/louannegrosjean/Desktop/deploy-infinityfree.zip htdocs backend -x \"*.DS_Store\")",
+      "Bash(unzip -l /Users/louannegrosjean/Desktop/deploy-infinityfree.zip)",
+      "Bash(grep -i \"config.php$\")",
+      "Bash(rm -f /Users/louannegrosjean/Desktop/deploy-infinityfree.zip)",
+      "Bash(zip -r /Users/louannegrosjean/Desktop/deploy-infinityfree.zip . -x \"*.DS_Store\")"
     ],
     "additionalDirectories": [
       "/private/tmp/claude-501/-Users-louannegrosjean-Desktop-sae-portfolio/7ff13e04-ed45-480f-90db-01c0ee4c8c47/scratchpad/deploy-infinityfree/backend/config"

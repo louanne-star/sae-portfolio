@@ -56,9 +56,7 @@ CREATE TABLE `portfolio_projet_competence` (
   `star_action` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `star_resultat` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`projet_id`,`competence_id`),
-  KEY `competence_id` (`competence_id`),
-  CONSTRAINT `portfolio_projet_competence_ibfk_1` FOREIGN KEY (`projet_id`) REFERENCES `portfolio_projets` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `portfolio_projet_competence_ibfk_2` FOREIGN KEY (`competence_id`) REFERENCES `portfolio_competences` (`id`) ON DELETE CASCADE
+  KEY `competence_id` (`competence_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
