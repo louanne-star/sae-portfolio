@@ -12,3 +12,6 @@ public/*
 # Fichiers d'environnement locaux
 .env
 .DS_Store
+
+# Identifiants de connexion à la base de données (jamais dans un dépôt public)
+backend/config/config.php

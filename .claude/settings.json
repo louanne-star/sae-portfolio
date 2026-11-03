@@ -9,6 +9,9 @@
       "Bash(python3 -m json.tool)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4300/images/empreintes.jpg)",
       "Bash(gh auth *)"
+    ],
+    "additionalDirectories": [
+      "/private/tmp/claude-501/-Users-louannegrosjean-Desktop-sae-portfolio/7ff13e04-ed45-480f-90db-01c0ee4c8c47/scratchpad/deploy-infinityfree/backend/config"
     ]
   }
 }
