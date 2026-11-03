@@ -1,0 +1,23 @@
+<svg viewBox="0 0 240 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="noeud">
+      <path d="M0,0 C-26,-26 -48,-6 -37,16 C-27,32 -6,16 0,0 Z" fill="#f0b6c6" />
+      <path d="M0,0 C26,-26 48,-6 37,16 C27,32 6,16 0,0 Z" fill="#f0b6c6" />
+      <path d="M-5,10 C-12,26 -16,38 -11,54" fill="none" stroke="#f0b6c6" stroke-width="7" stroke-linecap="round" />
+      <path d="M5,10 C12,26 18,40 13,56" fill="none" stroke="#f0b6c6" stroke-width="7" stroke-linecap="round" />
+      <ellipse cx="0" cy="3" rx="8" ry="10" fill="#f6cdd8" />
+    </g>
+  </defs>
+
+  <!-- Corps du dossier -->
+  <rect x="10" y="40" width="220" height="150" rx="18" fill="#f8e488" />
+  <!-- Dos du dossier (languette asymétrique, façon vrai dossier suspendu) -->
+  <path d="M18,46 V22 A14,14 0 0 1 32,8 H150 A14,14 0 0 1 164,22 V46 Z" fill="#f0d766" />
+  <!-- Ligne de pli -->
+  <rect x="18" y="42" width="146" height="4" fill="#e2c455" />
+  <!-- Reflet en haut du corps avant -->
+  <rect x="24" y="48" width="192" height="5" rx="2.5" fill="#fdf3c4" opacity="0.7" />
+
+  <use href="#noeud" transform="translate(174, 96) scale(0.85) rotate(-6)" />
+  <use href="#noeud" transform="translate(70, 148) scale(0.65) rotate(-4)" />
+</svg>

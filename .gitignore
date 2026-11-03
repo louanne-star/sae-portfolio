@@ -1,0 +1,14 @@
+# Dépendances et builds Angular (régénérés par npm install / npm run build)
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# Contenu du build Angular copié dans public/ par `npm run build:prod`
+# (seuls les fichiers PHP écrits à la main sont versionnés)
+public/*
+!public/api.php
+!public/.htaccess
+
+# Fichiers d'environnement locaux
+.env
+.DS_Store

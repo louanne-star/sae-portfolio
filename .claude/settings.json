@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lsof -nP -iTCP:4300 -sTCP:LISTEN)",
+      "Bash(/Applications/MAMP/Library/bin/mysql80/bin/mysql --default-character-set=utf8mb4 -h127.0.0.1 -P8889 -uroot -proot sae_portfolio -e ' *)",
+      "Bash(curl -s http://localhost:8000/api/stats)",
+      "Bash(/Applications/MAMP/Library/bin/mysql80/bin/mysql --default-character-set=utf8mb4 -h127.0.0.1 -P8889 -uroot -proot sae_portfolio -e \"SELECT id, code_ac, nom, description FROM portfolio_competences WHERE id=1\\\\G\")",
+      "Bash(curl -s http://localhost:8000/api/projets/forcats-nou)",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4300/images/empreintes.jpg)",
+      "Bash(gh auth *)"
+    ]
+  }
+}

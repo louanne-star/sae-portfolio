@@ -1,0 +1,20 @@
+# Déploiement Apache (production) : ce fichier doit être servi comme
+# document root (ex: DocumentRoot .../sae_portfolio/public).
+#
+# 1) API : toute requête /api/... est envoyée vers api.php, qui reçoit le
+#    chemin demandé (après /api/) dans le paramètre GET "route".
+# 2) Fichiers réels (JS/CSS/images générés par `ng build`) : servis tels quels.
+# 3) Toute autre route (ex: /projet/mon-slug) : gérée côté client par Angular
+#    Router, on renvoie donc index.html qui démarre l'application Angular.
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^api/?$ api.php [L,QSA]
+RewriteRule ^api/(.*)$ api.php?route=$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^ index.html [L]

@@ -1,0 +1,321 @@
+<section class="hero">
+  <h1 class="hero__titre">Portfolio</h1>
+
+  <div class="hero__illustration-zone">
+    <span class="hero__tag">2026 · BUT Informatique</span>
+
+    <div class="hero__illustration-ligne">
+      <div class="hero__parallax" [appParallax]="0.12">
+        <div class="dossier-mignon" aria-hidden="true">
+          <div class="dossier-mignon__feuilles">
+            <div class="feuille feuille--1">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="feuille feuille--2">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="feuille feuille--3">
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <img
+            src="/illustrations/dossier-mignon.svg"
+            alt="Illustration d'un dossier jaune orné de nœuds roses, d'où sortent des feuilles"
+            class="dossier-mignon__image"
+          />
+        </div>
+      </div>
+
+      <div class="hero__carte-competences">
+        <p class="hero__carte-competences-titre">Ce que je fais</p>
+        <ul>
+          <li>✓ Développement web</li>
+          <li>✓ Bases de données</li>
+          <li>✓ Architecture MVC</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__pied">
+    <p class="hero__accroche">Construire des applications solides, une compétence à la fois.</p>
+    <div class="hero__identite">
+      <p class="hero__nom">{{ nom }}</p>
+      <p class="hero__role">{{ role }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="bandeau-stats pleine-largeur" appFadeIn>
+  <div class="conteneur bandeau-stats__grille">
+    @if (statistiques(); as stats) {
+      <div class="stat-carte">
+        <span class="stat-carte__chiffre" [appCompteurAnimation]="stats.nombre_projets">0</span>
+        <span class="stat-carte__libelle">Projets réalisés</span>
+      </div>
+      <div class="stat-carte stat-carte--sombre">
+        <span class="stat-carte__chiffre" [appCompteurAnimation]="stats.nombre_competences">0</span>
+        <span class="stat-carte__libelle">Compétences validées</span>
+      </div>
+      <div class="stat-carte">
+        <span class="stat-carte__chiffre" [appCompteurAnimation]="stats.nombre_analyses_star">0</span>
+        <span class="stat-carte__libelle">Analyses STAR rédigées</span>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section-methode">
+  <h2 class="section-methode__titre">Ma méthode de travail</h2>
+
+  <div class="grille-methode">
+    <article class="etape-methode" appFadeIn>
+      <div class="etape-methode__icone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="10" cy="10" r="6" />
+          <line x1="15" y1="15" x2="20" y2="20" />
+        </svg>
+      </div>
+      <h3 class="etape-methode__titre">Analyse</h3>
+      <p class="etape-methode__description">Comprendre le besoin et la problématique métier.</p>
+    </article>
+
+    <article class="etape-methode" appFadeIn [appFadeInDelay]="80">
+      <div class="etape-methode__icone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <rect x="4" y="4" width="16" height="6" rx="1" />
+          <rect x="4" y="14" width="16" height="6" rx="1" />
+        </svg>
+      </div>
+      <h3 class="etape-methode__titre">Conception</h3>
+      <p class="etape-methode__description">Modéliser l'architecture et la base de données.</p>
+    </article>
+
+    <article class="etape-methode" appFadeIn [appFadeInDelay]="160">
+      <div class="etape-methode__icone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="8 6 3 12 8 18" />
+          <polyline points="16 6 21 12 16 18" />
+        </svg>
+      </div>
+      <h3 class="etape-methode__titre">Développement</h3>
+      <p class="etape-methode__description">Coder une solution propre, testée et documentée.</p>
+    </article>
+
+    <article class="etape-methode" appFadeIn [appFadeInDelay]="240">
+      <div class="etape-methode__icone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3 L20 6 V12 C20 17 16.5 20 12 21 C7.5 20 4 17 4 12 V6 Z" />
+          <polyline points="9 12 11.5 14.5 15.5 10" />
+        </svg>
+      </div>
+      <h3 class="etape-methode__titre">Tests</h3>
+      <p class="etape-methode__description">Vérifier la fiabilité avant chaque mise en production.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-projets">
+  <h2 class="section-projets__titre">Mes projets</h2>
+
+  <div class="grille-projets">
+    @if (chargementEnCours()) {
+      <p class="message-vide">Chargement des projets…</p>
+    } @else if (erreur()) {
+      <p class="message-vide">Impossible de charger les projets pour le moment.</p>
+    } @else if (projets().length === 0) {
+      <p class="message-vide">Aucun projet à afficher pour le moment.</p>
+    } @else {
+      @for (projet of projets(); track projet.id; let i = $index) {
+        <article class="carte-projet" appFadeIn [appFadeInDelay]="i * 80">
+          <button type="button" class="carte-projet__lien-global" (click)="ouvrirProjet(projet.slug)">
+            <div class="carte-projet__image-conteneur" [attr.data-initiale]="projet.titre.charAt(0)">
+              @if (projet.est_phare === 1) {
+                <span class="carte-projet__badge-phare">Phare</span>
+              }
+              @if (projet.url_image) {
+                <img
+                  [src]="projet.url_image"
+                  [alt]="'Aperçu du projet : ' + projet.titre"
+                  class="carte-projet__image"
+                  loading="lazy"
+                  (error)="$any($event.target).style.display = 'none'"
+                />
+              }
+            </div>
+            <div class="carte-projet__contenu">
+              <h3 class="carte-projet__titre">{{ projet.titre }}</h3>
+              <p class="carte-projet__description">{{ projet.description_courte }}</p>
+              @if (listeDisciplines(projet.disciplines).length > 0) {
+                <div class="carte-projet__disciplines">
+                  @for (discipline of listeDisciplines(projet.disciplines); track discipline) {
+                    <span class="tag-discipline">{{ discipline }}</span>
+                  }
+                </div>
+              }
+              <span class="carte-projet__cta">Voir le projet →</span>
+            </div>
+          </button>
+        </article>
+      }
+    }
+  </div>
+</section>
+
+<section class="section-contact pleine-largeur" appFadeIn>
+  <div class="conteneur section-contact__grille">
+    <h2 class="section-contact__titre">Travaillons<br />ensemble !</h2>
+
+    <div class="section-contact__carte">
+      <a [href]="'mailto:' + email" class="section-contact__lien">
+        <svg class="section-contact__icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <polyline points="3 7 12 13 21 7" />
+        </svg>
+        <span>{{ email }}</span>
+      </a>
+      <a [href]="urlLinkedin" target="_blank" rel="noopener noreferrer" class="section-contact__lien">
+        <svg class="section-contact__icone" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+        <span>LinkedIn</span>
+      </a>
+      <a [href]="urlGithub" target="_blank" rel="noopener noreferrer" class="section-contact__lien">
+        <svg class="section-contact__icone" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+        </svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+@if (modalOuverte()) {
+  <div class="modal-projet__fond" (click)="fermerModal()">
+    <div
+      class="modal-projet"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="projetSelectionne()?.titre ?? 'Détail du projet'"
+      (click)="$event.stopPropagation()"
+    >
+      <button type="button" class="modal-projet__fermer" (click)="fermerModal()" aria-label="Fermer">✕</button>
+
+      @if (modalChargementEnCours()) {
+        <p class="message-vide modal-projet__message">Chargement du projet…</p>
+      } @else if (modalErreur() || !projetSelectionne()) {
+        <p class="message-vide modal-projet__message">Impossible de charger ce projet pour le moment.</p>
+      } @else {
+        @let projet = projetSelectionne()!;
+        @let urlVideo = urlVideoIncorporee(projet.url_projet);
+
+        @if (urlVideo) {
+          <div class="modal-projet__video">
+            <iframe
+              [src]="urlVideo"
+              title="Lecteur vidéo du projet"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+        } @else if (projet.url_image) {
+          <div class="detail-projet__image-conteneur modal-projet__image" [attr.data-initiale]="projet.titre.charAt(0)">
+            <img
+              [src]="projet.url_image"
+              [alt]="'Illustration du projet : ' + projet.titre"
+              class="detail-projet__image"
+              (error)="$any($event.target).style.display = 'none'"
+            />
+          </div>
+        }
+
+        <div class="modal-projet__contenu">
+          <header class="detail-projet__entete">
+            <h1>{{ projet.titre }}</h1>
+            @if (listeDisciplines(projet.disciplines).length > 0) {
+              <div class="carte-projet__disciplines">
+                @for (discipline of listeDisciplines(projet.disciplines); track discipline) {
+                  <span class="tag-discipline">{{ discipline }}</span>
+                }
+              </div>
+            }
+          </header>
+
+          <div class="detail-projet__liens">
+            @if (projet.url_projet) {
+              <a [href]="projet.url_projet" target="_blank" rel="noopener noreferrer" class="bouton">
+                {{ urlVideo ? 'Voir la vidéo en plein écran' : 'Voir le site' }}
+              </a>
+            }
+            @if (projet.url_github) {
+              <a [href]="projet.url_github" target="_blank" rel="noopener noreferrer" class="bouton bouton--secondaire">
+                Code source (GitHub)
+              </a>
+            }
+          </div>
+
+          @if (projet.contexte_client) {
+            <section class="detail-projet__section">
+              <h2>Contexte</h2>
+              <p style="white-space: pre-line">{{ projet.contexte_client }}</p>
+            </section>
+          }
+
+          @if (projet.objectif) {
+            <section class="detail-projet__section">
+              <h2>Objectifs</h2>
+              <p style="white-space: pre-line">{{ projet.objectif }}</p>
+            </section>
+          }
+
+          <section class="detail-projet__section">
+            <h2>Description</h2>
+            <p style="white-space: pre-line">{{ projet.problematique }}</p>
+          </section>
+
+          <section class="detail-projet__section detail-projet__competences">
+            <h2>Compétences mobilisées</h2>
+
+            @if (projet.competences.length === 0) {
+              <p class="message-vide">Aucune compétence associée à ce projet pour le moment.</p>
+            } @else {
+              @for (competence of projet.competences; track competence.id) {
+                <article class="carte-competence">
+                  <h3 class="carte-competence__titre">
+                    <span class="carte-competence__code">{{ competence.code_ac }}</span>
+                    {{ competence.nom }}
+                  </h3>
+                  <p class="carte-competence__description">{{ competence.description }}</p>
+
+                  <dl class="star">
+                    <div class="star__bloc">
+                      <dt>Situation</dt>
+                      <dd style="white-space: pre-line">{{ competence.star_situation }}</dd>
+                    </div>
+                    <div class="star__bloc">
+                      <dt>Tâche</dt>
+                      <dd style="white-space: pre-line">{{ competence.star_tache }}</dd>
+                    </div>
+                    <div class="star__bloc">
+                      <dt>Action</dt>
+                      <dd style="white-space: pre-line">{{ competence.star_action }}</dd>
+                    </div>
+                    <div class="star__bloc">
+                      <dt>Résultat</dt>
+                      <dd style="white-space: pre-line">{{ competence.star_resultat }}</dd>
+                    </div>
+                  </dl>
+                </article>
+              }
+            }
+          </section>
+
+          <p class="modal-projet__astuce">Appuyez sur <kbd>Échap</kbd> ou cliquez à l'extérieur pour fermer</p>
+        </div>
+      }
+    </div>
+  </div>
+}
